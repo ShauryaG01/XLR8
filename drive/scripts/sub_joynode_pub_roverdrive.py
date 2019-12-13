@@ -30,10 +30,14 @@ def find_pwmtest3(msg):
     if (msg.buttons[5] == 0):
        pwm[1]=0
       '''
+    factor = 0.7
     if(msg.buttons[6]==0):
         pwndir=0
         pwmtotal=interp(msg.axes[1],[-1,1],[-255,255])
-        pwmdir=interp(msg.axes[0],[-1,1],[-155,155])
+        #pwmdir=interp(msg.axes[0],[-1,1],[-155,155])
+	if (msg.buttons[0] == 1):
+	   factor = 1
+	pwmdir=msg.axes[0] * pwmtotal * factor
         #rospy.loginfo(pwmdir)
         #rospy.loginfo(pwmtotal)
         pwm[2]=0
@@ -121,7 +125,7 @@ def callback(msg):
 
 def listener():
     rospy.init_node('listener_joy', anonymous=True)
-    rospy.Subscriber("joy_for_drive", Joy, callback)
+    rospy.Subscriber("joy", Joy, callback)
     rospy.spin()
 
 if __name__ == '__main__':
