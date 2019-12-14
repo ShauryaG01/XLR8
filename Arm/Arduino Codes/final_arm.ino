@@ -17,8 +17,8 @@ ros::Publisher chatter("angle",&ref_msg);
 
 int c ;
 int i=0;
-int actpwm1=8, actpwm2=9, basepwm=10, grippwm1=11, grippwm2=12, wristpwm=7;
-int actdir1=22, actdir2=24, basedir=36, gripdir1=28, gripdir2=30, wristdir=42;
+int actpwm1=12, actpwm2=11, basepwm=9, grippwm1=4, grippwm2=7, wristpwm=2;
+int actdir1=13, actdir2=10, basedir=8, gripdir1=26, gripdir2=6, wristdir=22;
 
 void arm_msg( const pcl_msgs::Vertices& cmd_msg)
 {
@@ -135,7 +135,7 @@ void setup(){
   nh.initNode();
   nh.subscribe(sub);
   nh.advertise(chatter);
-  motor1.init();
+  //motor1.init();
   
   
   
